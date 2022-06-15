@@ -13,7 +13,7 @@ CREATE TABLE planets(
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     orbital_period_yrs FLOAT,
-    star_id INT REFERENCES stars,
+    star_id INT REFERENCES stars, //should this be not null?
 
     UNIQUE(name,star_id)
 );
@@ -23,7 +23,7 @@ CREATE TABLE planets(
 CREATE TABLE moons(
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL ,
-    planet_id INT REFERENCES planets,
+    planet_id INT REFERENCES planets, //should this be not null?
 
     UNIQUE(name, planet_id)
 );
@@ -53,6 +53,8 @@ VALUES
     ('The Moon', 1),
     ('Phobos', 2),
     ('Deimos', 2);
+
+
 
 SELECT p.name, s.name, count(m.id) as moon_count
 FROM planets p 
